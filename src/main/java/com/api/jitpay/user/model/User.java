@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Builder(toBuilder = true)
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements Serializable

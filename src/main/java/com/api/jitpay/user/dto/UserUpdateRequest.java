@@ -1,16 +1,18 @@
 package com.api.jitpay.user.dto;
 
-import lombok.*;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreationRequest
+public class UserUpdateRequest
 {
+    private String userId;
+
     private String createdOn;
 
     private String email;
