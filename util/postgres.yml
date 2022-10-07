@@ -1,0 +1,17 @@
+version: '2'
+services:
+  postgres-db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: jitpaydb
+      POSTGRES_PASSWORD: jitpaydb
+#      POSTGRES_DB: jitpaydb
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
+    driver: local
+

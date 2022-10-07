@@ -1,16 +1,19 @@
 package com.api.jitpay.user.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@Builder(toBuilder = true)
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse
+public class UserResponse implements Serializable
 {
+    private UUID userId;
+
     private LocalDateTime createdOn;
 
     private String email;

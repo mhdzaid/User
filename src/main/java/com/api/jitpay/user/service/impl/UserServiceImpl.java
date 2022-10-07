@@ -10,9 +10,11 @@ import com.api.jitpay.user.repository.UserRepository;
 import com.api.jitpay.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class UserServiceImpl implements UserService
 {
 
@@ -36,9 +38,9 @@ public class UserServiceImpl implements UserService
     public UserResponse updateUser(UserUpdateRequest request)
     {
         boolean userExists = userRepository.existsByEmail(request.getEmail());
-        if(userExists)
+        if(!userExists)
         {
-            throw new UserFriendlyException("User already exists");
+            throw new UserFriendlyException("User doesn't already exists");
         }
         User userToUpdate = userMapper.userUpdateRequestToUser(request);
         User userUpdated = userRepository.save(userToUpdate);

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
+@Table(name = "jitpay_user")
 @Getter
 @Setter
 @AllArgsConstructor
