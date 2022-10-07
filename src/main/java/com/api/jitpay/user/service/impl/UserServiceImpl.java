@@ -12,6 +12,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 @Transactional
@@ -46,5 +49,15 @@ public class UserServiceImpl implements UserService
         User userUpdated = userRepository.save(userToUpdate);
         UserResponse response = userMapper.userToUserResponse(userUpdated);
         return response;
+    }
+
+    @Override
+    public User getUser(UUID userId) {
+        Optional<User> user =  userRepository.findById(userId);
+        if(user.isPresent())
+        {
+            return user.get();
+        }
+        throw new UserFriendlyException("User of this Id doesn't exit");
     }
 }
