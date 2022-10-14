@@ -1,6 +1,6 @@
 version: '2'
 services:
-  postgres-db:
+  user-db:
     image: postgres:12
     environment:
       POSTGRES_USER: jitpaydb

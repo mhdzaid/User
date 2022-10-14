@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.api</groupId>
-	<artifactId>jitpay</artifactId>
+	<artifactId>user</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jitpay</name>
 	<description>Demo project for Spring Boot</description>
@@ -17,6 +17,7 @@
 		<java.version>1.8</java.version>
 		<mapstruct.version>1.5.2.Final</mapstruct.version>
 		<postgresql.version>42.2.5</postgresql.version>
+		<eureka-server.version>3.1.4</eureka-server.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -63,6 +64,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+			<version>${eureka-server.version}</version>
 		</dependency>
 
 		<dependency>

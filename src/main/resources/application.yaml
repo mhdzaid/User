@@ -1,4 +1,7 @@
 spring:
+  application:
+    name:
+      user_client
   main:
     allow-bean-definition-overriding: true
   datasource:
@@ -18,3 +21,9 @@ spring:
     user: jitpaydb
     password: jitpaydb
     locations: classpath:db/migration
+  eureka:
+    client:
+      registerWithEureka: true
+
+server:
+  port: 8080
