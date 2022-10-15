@@ -1,10 +1,9 @@
 package com.api.user.service.impl;
 
-import com.api.user.dto.UserCreationRequest;
-import com.api.user.dto.UserResponse;
+import com.api.user.client.UserLocationClient;
+import com.api.user.dto.*;
 import com.api.user.exception.UserFriendlyException;
 import com.api.user.model.User;
-import com.api.user.dto.UserUpdateRequest;
 import com.api.user.mapper.UserMapper;
 import com.api.user.repository.UserRepository;
 import com.api.user.service.UserService;
@@ -23,6 +22,8 @@ public class UserServiceImpl implements UserService
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+
+    private final UserLocationClient userLocationClient;
     @Override
     public UserResponse createUser(UserCreationRequest request)
     {
@@ -59,5 +60,13 @@ public class UserServiceImpl implements UserService
             return user.get();
         }
         throw new UserFriendlyException("User of this Id doesn't exit");
+    }
+
+    @Override
+    public UserLatestLocationResponse getUserLocation(UUID userId)
+    {
+        User user = getUser(userId);
+        LocationDTO locationDTO = userLocationClient.getLatestUserLocation(userId);
+        return userMapper.createUserLocationResponse(user, locationDTO);
     }
 }

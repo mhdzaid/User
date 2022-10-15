@@ -1,6 +1,7 @@
 package com.api.user.service;
 
 import com.api.user.dto.UserCreationRequest;
+import com.api.user.dto.UserLatestLocationResponse;
 import com.api.user.dto.UserResponse;
 import com.api.user.model.User;
 import com.api.user.dto.UserUpdateRequest;
@@ -14,4 +15,6 @@ public interface UserService
     UserResponse updateUser(UserUpdateRequest request);
 
     User getUser(UUID userId);
+
+    UserLatestLocationResponse getUserLocation(UUID userId);
 }
