@@ -30,8 +30,7 @@ public class UserLocationClient
 
     public LocationDTO getLatestUserLocation(UUID userId)
     {
-        Application application = eurekaClient.getApplication(locationReaderClientId);
-        List<InstanceInfo> instanceInfoList = application.getInstances();
+        List<InstanceInfo> instanceInfoList = getInstances(locationReaderClientId);
         List<LocationDTO> locationDTOList = new ArrayList<>();
         for(InstanceInfo instanceInfo: instanceInfoList)
         {
@@ -42,4 +41,31 @@ public class UserLocationClient
 
         return locationDTOList.size() > 0 ? locationDTOList.get(0) : null;
     }
+
+    public void createUserLocationPartition(UUID userId)
+    {
+        List<InstanceInfo> instanceInfoList = getInstances(locationReaderClientId);
+        for(InstanceInfo instanceInfo: instanceInfoList)
+        {
+            String url = "http://" + instanceInfo.getIPAddr() + ":" + instanceInfo.getPort() + "/" +userId +"/location/partition";
+            restTemplate.postForEntity(url, null, String.class);
+        }
+    }
+
+    public void deleteUserLocationPartition(UUID userId)
+    {
+        List<InstanceInfo> instanceInfoList = getInstances(locationReaderClientId);
+        for(InstanceInfo instanceInfo: instanceInfoList)
+        {
+            String url = "http://" + instanceInfo.getIPAddr() + ":" + instanceInfo.getPort() + "/" +userId +"/location/partition";
+            restTemplate.delete(url);
+        }
+    }
+
+    private List<InstanceInfo> getInstances(String instanceId)
+    {
+        Application application = eurekaClient.getApplication(instanceId);
+        return application.getInstances();
+    }
+
 }

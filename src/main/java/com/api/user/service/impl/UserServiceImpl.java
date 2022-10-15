@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService
         User user = userMapper.userCreationRequestToUser(request);
         User userCreated = userRepository.save(user);
         UserResponse response = userMapper.userToUserResponse(userCreated);
+        userLocationClient.createUserLocationPartition(user.getUserId());
         return response;
     }
 
