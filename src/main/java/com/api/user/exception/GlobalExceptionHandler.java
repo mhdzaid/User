@@ -25,7 +25,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value={UserFriendlyException.class})
-    public ResponseEntity<ErrorResponse> handleCustomException(UserFriendlyException exception) {
+    public ResponseEntity<ErrorResponse> handleCustomException(UserFriendlyException exception)
+    {
         String message = exception.getMessage();
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(),
                 message, System.currentTimeMillis());

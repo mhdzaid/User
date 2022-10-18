@@ -19,6 +19,11 @@ public class UserController
 
     private final UserLocationClient userLocationClient;
 
+    /**
+     * Create User API
+     * @param request
+     * @return
+     */
     @PostMapping("/api/user")
     public ResponseEntity<UserResponse> createUser(@RequestBody UserCreationRequest request)
     {
@@ -26,6 +31,11 @@ public class UserController
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * Update User API
+     * @param request
+     * @return
+     */
     @PutMapping("/api/user")
     public ResponseEntity<UserResponse> updateUser(@RequestBody UserUpdateRequest request)
     {
@@ -33,6 +43,11 @@ public class UserController
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * Get User with current location
+     * @param userId
+     * @return
+     */
     @GetMapping("/api/user/{userId}")
     public ResponseEntity<UserLatestLocationResponse> getUserLocation(@PathVariable String userId)
     {
@@ -40,6 +55,11 @@ public class UserController
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * Get All User locations
+     * @param userId
+     * @return
+     */
     @GetMapping("/api/user/{userId}/location")
     public ResponseEntity<UserLocationsResponse> getAllLocationsOfUser(@PathVariable String userId,
                                                                        @RequestParam("page") Integer page,

@@ -30,3 +30,7 @@ server:
 
 application:
   location-reader-client: location-reader-client
+  user-latest-location-api:  http://{0}/api/user/{1}/location/_latest
+  user-create-partition-api:  http://{0}/api/user/{1}/location/partition";
+  user-delete-partition-api:  http://{0}/api/user/{1}/location/partition";
+  user-get-all-locations-api: http://{0}/api/user/{1}/location?page={2}&size={3}&startDate={4}&endDate={5}

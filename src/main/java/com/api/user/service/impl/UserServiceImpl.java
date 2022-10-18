@@ -19,11 +19,15 @@ import java.util.UUID;
 @Transactional
 public class UserServiceImpl implements UserService
 {
-
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-
     private final UserLocationClient userLocationClient;
+
+    /**
+     * Creates user as well as sends a request to location-reader microservice to create partition
+     * @param request
+     * @return
+     */
     @Override
     public UserResponse createUser(UserCreationRequest request)
     {
@@ -39,6 +43,11 @@ public class UserServiceImpl implements UserService
         return response;
     }
 
+    /**
+     * Updates user
+     * @param request
+     * @return
+     */
     @Override
     public UserResponse updateUser(UserUpdateRequest request)
     {
@@ -53,6 +62,11 @@ public class UserServiceImpl implements UserService
         return response;
     }
 
+    /**
+     * Gets user instance
+     * @param userId
+     * @return
+     */
     @Override
     public User getUser(UUID userId) {
         Optional<User> user =  userRepository.findById(userId);
@@ -63,6 +77,11 @@ public class UserServiceImpl implements UserService
         throw new UserFriendlyException("User of this Id doesn't exit");
     }
 
+    /**
+     * Gets user latest location
+     * @param userId
+     * @return
+     */
     @Override
     public UserLatestLocationResponse getUserLocation(UUID userId)
     {
